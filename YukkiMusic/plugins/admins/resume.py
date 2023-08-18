@@ -16,6 +16,8 @@ from YukkiMusic import app
 from YukkiMusic.core.call import Yukki
 from YukkiMusic.utils.database import is_music_playing, music_on
 from YukkiMusic.utils.decorators import AdminRightsCheck
+from YukkiMusic.utils.database import get_client
+from YukkiMusic.core.userbot import assistants
 
 # Commands
 RESUME_COMMAND = get_command("RESUME_COMMAND")
@@ -40,5 +42,11 @@ async def resume_com(cli, message: Message, _, chat_id):
         photo=RESUME_IMG_URL,
         caption=_["admin_4"].format(message.from_user.mention)
     )
-    await asyncio.sleep(1)
-    await message.reply_sticker("CAACAgQAAxkBAAEJ6olkzG_ZZe1h-5HZZBrJqU_ZFunZpQACvxEAAqbxcR6tsYeSUVSTay8E") #rose kudukkurathu
+    #await asyncio.sleep(1)
+    #await message.reply_sticker("CAACAgQAAxkBAAEJ6olkzG_ZZe1h-5HZZBrJqU_ZFunZpQACvxEAAqbxcR6tsYeSUVSTay8E") #rose kudukkurathu
+    for num in assistants:
+            client = await get_client(num)
+            await client.send_sticker(
+                        message.chat.id,
+                        sticker="CAACAgQAAxkBAAEJ6olkzG_ZZe1h-5HZZBrJqU_ZFunZpQACvxEAAqbxcR6tsYeSUVSTay8E"
+            )
