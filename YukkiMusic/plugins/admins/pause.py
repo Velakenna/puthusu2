@@ -16,6 +16,8 @@ from YukkiMusic import app
 from YukkiMusic.core.call import Yukki
 from YukkiMusic.utils.database import is_music_playing, music_off
 from YukkiMusic.utils.decorators import AdminRightsCheck
+from YukkiMusic.utils.database import get_client
+from YukkiMusic.core.userbot import assistants
 
 # Commands
 PAUSE_COMMAND = get_command("PAUSE_COMMAND")
@@ -41,4 +43,10 @@ async def pause_admin(cli, message: Message, _, chat_id):
         caption=_["admin_2"].format(message.from_user.mention)
     )
     await asyncio.sleep(1)
-    await message.reply_sticker("CAACAgEAAxkBAAEJ6nxkzFywBJ_zMhOj0wc7AQgV9cLNXwAC3QQAAlEpDTmUHImRSVIUeS8E")
+    #await message.reply_sticker("CAACAgEAAxkBAAEJ6nxkzFywBJ_zMhOj0wc7AQgV9cLNXwAC3QQAAlEpDTmUHImRSVIUeS8E")
+    for num in assistants:
+            client = await get_client(num)
+            await client.send_sticker(
+                        message.chat.id,
+                        sticker="CAACAgEAAxkBAAEJ6nxkzFywBJ_zMhOj0wc7AQgV9cLNXwAC3QQAAlEpDTmUHImRSVIUeS8E"
+            )
