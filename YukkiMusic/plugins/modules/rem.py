@@ -2,6 +2,7 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 import datetime
 import time
+from YukkiMusic import app
 
 # Replace with your own bot owner's chat ID
 bot_owner_chat_id = -1001975251757
